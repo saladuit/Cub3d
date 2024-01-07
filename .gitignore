@@ -1,3 +1,6 @@
+# project specific ignore patterns
+cub3d
+build/
 # Prerequisites
 *.d
 
