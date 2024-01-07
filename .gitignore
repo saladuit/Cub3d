@@ -2,7 +2,7 @@
 cub3d
 build
 compile_commands.json
-cache
+.cache
 
 # Prerequisites
 *.d
