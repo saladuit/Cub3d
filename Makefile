@@ -11,7 +11,7 @@ VPATH = . src
 
 INCLUDE = -I./include -I./MLX42/include
 
-MLX42 = build/libmlx42.a -Iinclude -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/"
+MLX42 =  -lglfw -lm build/libmlx42.a -Iinclude -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/"
 MLX42_DIR = MLX42
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
