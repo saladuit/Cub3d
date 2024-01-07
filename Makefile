@@ -1,26 +1,25 @@
-MAIN = main.c
-VISUALS = dda.c init_mlx.c move_player.c turn_player.c \
+MAIN =main.c
+VISUALS =dda.c init_mlx.c move_player.c turn_player.c \
 draw_line.c init_line.c generate_view.c utils.c init_info.c error_handling.c
 
 SRCS = $(MAIN)\
 $(VISUALS)
 
-OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
-NAME = cub3d
-VPATH = . src
+OBJS =$(SRCS:%.c=$(OBJS_DIR)/%.o)
+NAME =cub3d
 
-INCLUDE = -I./include -I./MLX42/include
+INCLUDE =-I./include -I./MLX42/include
 
-MLX42 =  -lglfw -lm build/libmlx42.a -Iinclude -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/"
-MLX42_DIR = MLX42
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+MLX42 =-lglfw -lm build/libmlx42.a -Iinclude -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/"
+MLX42_DIR =MLX42
+LIBFT_DIR =libft
+LIBFT =$(LIBFT_DIR)/libft.a
 
-CC = cc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
-OBJS_DIR = ./objs
+CC =cc
+CFLAGS =-Wall -Werror -Wextra -fsanitize=address -g
+OBJS_DIR =./objs
 
-RM = rm -rf
+RM =rm -rf
 
 all:	$(NAME)
 
