@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:54:40 by bschaafs          #+#    #+#             */
-/*   Updated: 2024/01/06 17:20:35 by bootjan          ###   ########.fr       */
+/*   Updated: 2024/01/07 20:34:07 by bootjan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 
 static void	move_forward(t_info *info, char **map)
 {
-	if (valid_move(map, info, 0, info->dir_x * MOVE_SPEED))
+	if (valid_move(map, info, 0, info->dir_x * MOVE_SPEED * 2))
 		info->pos_x += info->dir_x * MOVE_SPEED;
-	if (valid_move(map, info, info->dir_y * MOVE_SPEED, 0))
+	if (valid_move(map, info, info->dir_y * MOVE_SPEED * 2, 0))
 		info->pos_y += info->dir_y * MOVE_SPEED;
 }
 
 static void	move_backwards(t_info *info, char **map)
 {
-	if (valid_move(map, info, 0, -info->dir_x * MOVE_SPEED))
+	if (valid_move(map, info, 0, -info->dir_x * MOVE_SPEED * 2))
 		info->pos_x -= info->dir_x * MOVE_SPEED;
-	if (valid_move(map, info, -info->dir_y * MOVE_SPEED, 0))
+	if (valid_move(map, info, -info->dir_y * MOVE_SPEED * 2, 0))
 		info->pos_y -= info->dir_y * MOVE_SPEED;
 }
 
 static void	move_right(t_info *info, char **map)
 {
-	if (valid_move(map, info, 0, -info->dir_y * MOVE_SPEED))
+	if (valid_move(map, info, 0, -info->dir_y * MOVE_SPEED * 2))
 		info->pos_x -= info->dir_y * MOVE_SPEED;
-	if (valid_move(map, info, info->dir_x * MOVE_SPEED, 0))
+	if (valid_move(map, info, info->dir_x * MOVE_SPEED * 2, 0))
 		info->pos_y += info->dir_x * MOVE_SPEED;
 }
 
 static void	move_left(t_info *info, char **map)
 {
-	if (valid_move(map, info, 0, info->dir_y * MOVE_SPEED))
+	if (valid_move(map, info, 0, info->dir_y * MOVE_SPEED * 2))
 		info->pos_x += info->dir_y * MOVE_SPEED;
-	if (valid_move(map, info, -info->dir_x * MOVE_SPEED, 0))
+	if (valid_move(map, info, -info->dir_x * MOVE_SPEED * 2, 0))
 		info->pos_y -= info->dir_x * MOVE_SPEED;
 }
 
