@@ -1,5 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
+<<<<<<< HEAD
 /*                                                        ::::::::            */
 /*   cub3d.h                                            :+:    :+:            */
 /*                                                     +:+                    */
@@ -7,15 +8,25 @@
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
 /*   Updated: 2024/01/08 17:32:45 by bschaafs      ########   odam.nl         */
+=======
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bootjan <bootjan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/01 22:10:19 by bootjan           #+#    #+#             */
+/*   Updated: 08/01/2024 03:18:28 PM bootjan          ###   ########.fr       */
+>>>>>>> origin/parsing
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 #define CUB3D_H
 
-#include "ft_printf.h"
-#include "get_next_line.h"
+#include "error.h"
 #include "libft.h"
+#include "scene.h"
+
 #include <MLX42/MLX42.h>
 #include <fcntl.h>
 #include <math.h>
@@ -23,6 +34,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+#define BUFFER_SIZE 32
 
 #define WINDOW_HEIGHT 960
 #define WINDOW_WIDTH 1280
@@ -109,29 +122,24 @@ typedef struct s_root
 	t_raycast *raycast;
 } t_root;
 
-typedef struct s_scene
-{
-	char *no_path;
-	char *so_path;
-	char *we_path;
-	char *ea_path;
-	char *floor_rgb;
-	char *ceil_rgb;
-	char **map;
-} t_scene;
-
 // ### GENERATE VIEW ###########################################################
 void generate_view(void *arg);
 uint8_t dda(t_raycast *raycast, char **map);
 
+// ### PARSE ###################################################################
+size_t file_to_list(int fd, t_list **list);
+char *list_to_string(t_list *lst, size_t size);
+char *chunk_file_to_string(int fd);
+t_scene load_scene_from_file(char *file_path);
+
 // ### INITIALIZE ##############################################################
 t_info *init_info(t_root *root);
-t_root *init_mlx(t_root *root);
+void init_mlx(t_root *root);
 
 // ### UTILS ###################################################################
 bool valid_move(char **map, t_info *info, double y_plus, double x_plus);
 double ft_abs_double(double x);
-void free_root(t_root **root);
+void free_root(t_root *root);
 int compute_color_rgb(uint8_t rgb[3]);
 int compute_color(int r, int g, int b, int a);
 
@@ -145,8 +153,6 @@ void init_line(t_line *line, t_raycast *raycast, t_info *info, int x);
 void draw_line(t_root *root, t_line *line, uint8_t side);
 
 // ### ERROR HANDLING ##########################################################
-t_root *error_mlx(t_root **root);
-void system_error_and_exit(const char *function_name);
-void user_error_and_exit(const char *message);
+t_root *error_mlx(t_root *root);
 
 #endif

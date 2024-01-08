@@ -12,10 +12,10 @@
 
 #include "cub3d.h"
 
-static int	*convert_pixels(uint8_t *pixels)
+static int *convert_pixels(uint8_t *pixels)
 {
-	int			i;
-	int			*new_pixels;
+	int i;
+	int *new_pixels;
 
 	i = 0;
 	new_pixels = ft_calloc(TEX_SIZE * TEX_SIZE, sizeof(int));
@@ -23,18 +23,17 @@ static int	*convert_pixels(uint8_t *pixels)
 		return (NULL);
 	while (i < TEX_SIZE * TEX_SIZE)
 	{
-		new_pixels[i] = compute_color(pixels[4 * i], pixels[4 * i + 1], \
-		pixels[4 * i + 2], pixels[4 * i + 3]);
+		new_pixels[i] = compute_color(pixels[4 * i], pixels[4 * i + 1],
+									  pixels[4 * i + 2], pixels[4 * i + 3]);
 		i++;
 	}
 	return (new_pixels);
 }
 
-static mlx_image_t	*load_image(mlx_t *window, \
-const char *path, int *error_flag)
+static mlx_image_t *load_image(mlx_t *window, const char *path, int *error_flag)
 {
-	mlx_texture_t	*texture;
-	mlx_image_t		*image;
+	mlx_texture_t *texture;
+	mlx_image_t *image;
 
 	texture = mlx_load_png(path);
 	if (!texture)
@@ -48,10 +47,10 @@ const char *path, int *error_flag)
 	return (image);
 }
 
-int	*load_pixels(mlx_t *window, const char *path, int *error_flag)
+int *load_pixels(mlx_t *window, const char *path, int *error_flag)
 {
-	int				*pixels;
-	mlx_image_t		*image;
+	int *pixels;
+	mlx_image_t *image;
 
 	if (*error_flag != 0)
 		return (NULL);
@@ -64,9 +63,9 @@ int	*load_pixels(mlx_t *window, const char *path, int *error_flag)
 	return (pixels);
 }
 
-int	load_textures(t_root *root)
+int load_textures(t_root *root)
 {
-	int			error_flag;
+	int error_flag;
 
 	error_flag = 0;
 	root->no_texture = load_pixels(root->window, root->no_path, &error_flag);
@@ -78,22 +77,21 @@ int	load_textures(t_root *root)
 	return (0);
 }
 
-t_root	*init_mlx(t_root *root)
+void init_mlx(t_root *root)
 {
-	int	image_index;
+	int image_index;
 
 	root->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D...", true);
 	if (!root->window)
-		return (printf("Error\n"), free_root(&root), NULL);
+		system_error_and_exit("mlx_init in init_mlx");
 	if (load_textures(root) != 0)
-		return (error_mlx(&root));
+		system_error_and_exit("load_textures in init_mlx");
 	root->image = mlx_new_image(root->window, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!root->image)
-		return (error_mlx(&root));
+		system_error_and_exit("mlx_new_image in init_mlx");
 	image_index = mlx_image_to_window(root->window, root->image, 0, 0);
 	if (image_index == -1)
-		return (error_mlx(&root));
+		system_error_and_exit("mlx_image_to_window in init_mlx");
 	root->color_ceil = compute_color_rgb(root->rgb_ceil);
 	root->color_floor = compute_color_rgb(root->rgb_floor);
-	return (root);
 }
