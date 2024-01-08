@@ -6,7 +6,7 @@
 /*   By: bschaafs <bschaafs@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/09 14:53:59 by bschaafs      #+#    #+#                 */
-/*   Updated: 2024/01/08 16:49:19 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/08 16:35:25 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,4 @@ int		free_function(void *ptr);
 # define MAX_U 4294967296
 
 #endif
+
