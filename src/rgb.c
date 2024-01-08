@@ -29,13 +29,13 @@ void string_to_rgb(const char *string, t_rgb *rgb)
 			char_count++;
 		}
 		char_count = 0;
-		if (*string != '\0' && *string != ',')
+		if (*string != '\0' && *string != ',' && *string != '\n')
 			user_error_and_exit("Unexpected character in RGB values");
 		if (*string == ',')
 			++string;
 		++i;
 	}
-	if (i != 3 || *string != '\0')
+	if (i != 3 && *string != '\0' && *string != '\n')
 		user_error_and_exit("Format error in RGB values");
 	values_to_rgb(values, rgb);
 }

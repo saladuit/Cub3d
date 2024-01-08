@@ -14,7 +14,6 @@
 
 char *list_to_string(t_list *lst, size_t size)
 {
-	size_t chunk_size = 0;
 	char *chunk = NULL;
 	char *string = NULL;
 
@@ -24,8 +23,7 @@ char *list_to_string(t_list *lst, size_t size)
 	while (lst)
 	{
 		chunk = lst->content;
-		chunk_size = ft_strlen(chunk);
-		ft_strlcat(string, chunk, chunk_size);
+		ft_strlcat(string, chunk, size);
 		lst = lst->next;
 	}
 	return (string);

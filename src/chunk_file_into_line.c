@@ -20,7 +20,6 @@ char *chunk_file_to_string(int fd)
 
 	size = file_to_list(fd, &chunks);
 	string = list_to_string(chunks, size);
-	printf("%s", string);
 	ft_lstclear(&chunks, free);
 	return (string);
 }
