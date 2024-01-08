@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/08 16:43:18 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/08 17:32:45 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 #define TEX_SIZE 512
 #define MOVE_SPEED 0.1
-#define ROT_SPEED 0.03
+#define ROT_SPEED 0.06
 
 #define NORTH 0
 #define SOUTH 1

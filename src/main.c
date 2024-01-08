@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bootjan <bootjan@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 22:10:00 by bootjan           #+#    #+#             */
-/*   Updated: 08/01/2024 01:17:44 PM bootjan          ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: bootjan <bootjan@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/01 22:10:00 by bootjan       #+#    #+#                 */
+/*   Updated: 2024/01/08 17:31:57 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 char **load_map(void)
 {
-	int fd = open("maps/default.cub", O_RDONLY);
+	int fd = open("maps/test.cub", O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	char **map = ft_calloc(25, sizeof(char *));
+	char **map = ft_calloc(15, sizeof(char *));
 	if (!map)
 		return (close(fd), NULL);
-	for (int i = 0; i < 24; i++)
+	for (int i = 0; i < 14; i++)
 	{
 		map[i] = get_next_line(fd);
 		if (!map[i])
@@ -30,10 +30,11 @@ char **load_map(void)
 	return (map);
 }
 
-t_root *init_root(void)
+t_root *init_root(t_scene *scene)
 {
 	t_root *root;
 
+	(void) scene;
 	root = ft_calloc(1, sizeof(t_root));
 	if (!root)
 		return (NULL);
@@ -50,8 +51,8 @@ t_root *init_root(void)
 	root->ea_path = PATH2;
 	root->so_path = PATH3;
 	root->we_path = PATH4;
-	root->pos_x = 12;
-	root->pos_y = 12;
+	root->pos_x = 7;
+	root->pos_y = 10;
 	root->dir = 'E';
 	return (root);
 }
@@ -119,9 +120,9 @@ t_scene load_scene_from_file(char *file_path)
 	ft_bzero(&scene, sizeof(t_scene));
 	return (scene);
 }
-void run_game(void)
+void run_game(t_scene *scene)
 {
-	t_root *root = init_root();
+	t_root *root = init_root(scene);
 	if (!root)
 		system_error_and_exit("Root initialization");
 	root = init_mlx(root);
@@ -150,7 +151,6 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 		user_error_and_exit("Not enough arguments");
 	scene = load_scene_from_file(argv[1]);
-	(void)scene;
-	run_game();
+	run_game(&scene);
 	return (EXIT_SUCCESS);
 }
