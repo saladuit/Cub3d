@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bootjan <bootjan@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/01 22:10:19 by bootjan           #+#    #+#             */
-/*   Updated: 2024/01/06 17:33:20 by bootjan          ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: bootjan <bootjan@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
+/*   Updated: 2024/01/08 11:22:43 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,6 @@ void draw_line(t_root *root, t_line *line, uint8_t side);
 
 // ### ERROR HANDLING ##########################################################
 t_root *error_mlx(t_root **root);
+void system_error_and_exit(const char *function_name);
 
 #endif
