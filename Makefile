@@ -23,17 +23,20 @@ $(LIBFT):
 
 clean:	
 	@$(RM) $(OBJS) $(DEPENDS)
-	@$(MAKE) -C $(LIBFT_DIR) clean
 .PHONY: clean
 
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(BUILD_DIR)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
 .PHONY: fclean
 
 re: fclean all
 .PHONY: re
+
+clean_submodules:
+	@$(RM) $(MLX42_DIR)/build
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+.PHONY: clean_submodules
 
 debug:
 	@$(MAKE) DEBUG=1
