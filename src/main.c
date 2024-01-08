@@ -6,22 +6,11 @@
 /*   By: bootjan <bootjan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 22:10:00 by bootjan           #+#    #+#             */
-/*   Updated: 2024/01/06 17:27:11 by bootjan          ###   ########.fr       */
+/*   Updated: 08/01/2024 01:17:44 PM bootjan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-typedef struct s_scene
-{
-	char *no_path;
-	char *so_path;
-	char *we_path;
-	char *ea_path;
-	char *floor_rgb;
-	char *ceil_rgb;
-	char **map;
-} t_scene;
 
 char **load_map(void)
 {
@@ -65,72 +54,6 @@ t_root *init_root(void)
 	root->pos_y = 12;
 	root->dir = 'E';
 	return (root);
-}
-
-void user_error_and_exit(const char *message)
-{
-	printf("Error: %s\n", message);
-	exit(EXIT_FAILURE);
-}
-
-void system_error_and_exit(const char *function_name)
-{
-	perror(function_name);
-	exit(EXIT_FAILURE);
-}
-
-typedef struct s_list
-{
-	void *content;
-	struct s_list *next;
-} t_list;
-
-t_list *ft_lstnew(void *content)
-{
-	t_list *new;
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
-}
-
-t_list *ft_lstlast(t_list *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-void ft_lstadd_back(t_list **alst, t_list *new)
-{
-	t_list *last;
-	if (!alst || !new)
-		return;
-	if (!*alst)
-		*alst = new;
-	else
-	{
-		last = ft_lstlast(*alst);
-		last->next = new;
-	}
-}
-
-void ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list *next;
-	if (!lst || !del)
-		return;
-	while (*lst)
-	{
-		next = (*lst)->next;
-		del((*lst)->content);
-		free(*lst);
-		*lst = next;
-	}
 }
 
 size_t file_to_list(int fd, t_list **list)
@@ -196,6 +119,30 @@ t_scene load_scene_from_file(char *file_path)
 	ft_bzero(&scene, sizeof(t_scene));
 	return (scene);
 }
+void run_game(void)
+{
+	t_root *root = init_root();
+	if (!root)
+		system_error_and_exit("Root initialization");
+	root = init_mlx(root);
+	if (!root)
+		system_error_and_exit("mlx initialization");
+	t_info *info = init_info(root);
+	if (!info)
+		system_error_and_exit("Root initialization");
+	root->info = info;
+	t_raycast *raycast = ft_calloc(1, sizeof(t_raycast));
+	if (!raycast)
+		system_error_and_exit("raycast initialization");
+	root->raycast = raycast;
+	t_line line;
+	ft_bzero(&line, sizeof(t_line));
+	mlx_loop_hook(root->window, generate_view, (void *)root);
+	mlx_loop_hook(root->window, move_player, (void *)root);
+	mlx_loop(root->window);
+	mlx_terminate(root->window);
+	free_root(&root);
+}
 
 int main(int argc, char *argv[])
 {
@@ -204,27 +151,6 @@ int main(int argc, char *argv[])
 		user_error_and_exit("Not enough arguments");
 	scene = load_scene_from_file(argv[1]);
 	(void)scene;
-	t_root *root = init_root();
-	if (!root)
-		return (1);
-	root = init_mlx(root);
-	if (!root)
-		return (1);
-	t_info *info = init_info(root);
-	if (!info)
-		return (free_root(&root), 1);
-	root->info = info;
-	t_raycast *raycast = ft_calloc(1, sizeof(t_raycast));
-	if (!raycast)
-		return (free_root(&root), 1);
-	root->raycast = raycast;
-
-	t_line line;
-	ft_bzero(&line, sizeof(t_line));
-	mlx_loop_hook(root->window, generate_view, (void *)root);
-	mlx_loop_hook(root->window, move_player, (void *)root);
-	mlx_loop(root->window);
-	mlx_terminate(root->window);
-	free_root(&root);
-	return (0);
+	run_game();
+	return (EXIT_SUCCESS);
 }

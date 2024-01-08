@@ -109,6 +109,17 @@ typedef struct s_root
 	t_raycast *raycast;
 } t_root;
 
+typedef struct s_scene
+{
+	char *no_path;
+	char *so_path;
+	char *we_path;
+	char *ea_path;
+	char *floor_rgb;
+	char *ceil_rgb;
+	char **map;
+} t_scene;
+
 // ### GENERATE VIEW ###########################################################
 void generate_view(void *arg);
 uint8_t dda(t_raycast *raycast, char **map);
@@ -135,5 +146,7 @@ void draw_line(t_root *root, t_line *line, uint8_t side);
 
 // ### ERROR HANDLING ##########################################################
 t_root *error_mlx(t_root **root);
+void system_error_and_exit(const char *function_name);
+void user_error_and_exit(const char *message);
 
 #endif
