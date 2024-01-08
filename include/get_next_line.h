@@ -6,7 +6,7 @@
 /*   By: bschaafs <bschaafs@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/17 15:48:21 by bschaafs      #+#    #+#                 */
-/*   Updated: 2024/01/08 16:35:39 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/08 16:48:51 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ char	*free_temp(char **str);
 char	*get_next_line(int fd);
 
 #endif
-
