@@ -1,58 +1,40 @@
-FT_PRINTF = ft_helper.c ft_printf.c ft_print_u_d_i.c \
-ft_print_p_x_ux.c ft_print_per_s_c.c ft_base_converter.c
-GNL = get_next_line.c get_next_line_utils.c
+include makerc/definitions.mk
 
-SRCS = $(FT_PRINTF)\
-$(GNL)
-VPATH = . ./get_next_line ./ft_printf
+all: build_dir $(NAME)
+.PHONY: all
 
-OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
-OBJS_DIR = ./objs
+$(NAME): $(OBJS)
+	$(AR) $(ARFLAGS) $@ $^
 
-I_DIRS := $(shell find . -type f -name "*.h" -exec dirname {} + | uniq)
-INCLUDE = $(I_DIRS:%=-I%)
+build_dir:
+	$(shell mkdir -p $(dir $(OBJS)))
+.PHONY: build_dir
 
-ARRCS = ar rcs
-NAME = libft.a
-
-REMOVE = rm -f
-
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-
-
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-MAIN = main.c
-
-all: $(NAME)
-
-$(OBJS_DIR)/%.o:	%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
-
-$(NAME):		$(LIBFT) $(OBJS_DIR) $(OBJS)
-	@cp	$(LIBFT) $(NAME)
-	@$(ARRCS) $(NAME) $(OBJS)
-	@echo "Libft.a made!"
-
-$(LIBFT):
-	@make -C $(LIBFT_DIR) all
-
-$(OBJS_DIR):
-	@mkdir -p $(OBJS_DIR)
-	@echo "./objs made!"
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
 clean:
-	@make -C $(LIBFT_DIR) clean
-	@$(RM) $(OBJS)
-	@echo "Libft objects removed!"
+	@$(RM) $(OBJS) $(DEPENDS)
+.PHONY: clean
 
-fclean:	clean
-	@make -C $(LIBFT_DIR) fclean
+fclean: clean
 	@$(RM) $(NAME)
-	@echo "Libft.a removed!"
+	@$(RM) $(BUILD_DIR)
+.PHONY: fclean
 
 re: fclean all
+.PHONY: re
 
-.PHONY: all clean fclean re
+debug:
+	@$(MAKE) DEBUG=1
+.PHONY: debug
+
+fsan:
+	@$(MAKE) FSAN=1 DEBUG=1
+.PHONY: fsan
+
+resan: fclean fsan
+.PHONY: resan
+
+rebug: fclean debug
+.PHONY: rebug

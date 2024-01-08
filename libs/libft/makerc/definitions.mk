@@ -1,15 +1,14 @@
-NAME			:=cub3d
+NAME			:=libft.a
 
 #	Compiler
-CC				:=cc
+AR				:=ar
+ARFLAGS			:=rcs
 
 #	Remove command
 RM				:=rm -rf
 
 #	Compiler flags
 CFLAGS			=-Wall -Wextra -Werror -Wpedantic -Wfatal-errors
-LDFLAGS			:=-lglfw -lm
-DFLAGS			:=-MMD -MP
 
 #	Flags
 ifdef	DEBUG
@@ -25,17 +24,16 @@ endif
 SRC_DIR		 	:=src
 INCLUDE_DIR		:=include
 BUILD_DIR		:=build
-LIBS_DIR		:=libs
-MLX42_DIR		=$(LIBS_DIR)/MLX42
-LIBFT_DIR		=$(LIBS_DIR)/libft
-LIBFT 			=$(LIBFT_DIR)/libft.a
-MLX42			=$(MLX42_DIR)/$(BUILD_DIR)/libmlx42.a
+LIBFT_DIR		:=libft
+FT_PRINTF_DIR	:=ft_printf
+GET_NEXT_LINE_DIR	:=get_next_line
 
 #	Preprocessing files
-SRCS			:=$(wildcard $(SRC_DIR)/*.c)
-HEADERS			:=$(INCLUDE_DIR)/*.h \
-					$(LIBFT_DIR)/include/*.h \
-					$(MLX42_DIR)/include/*.h
+SRCS			:=$(wildcard $(SRC_DIR)/$(LIBFT_DIR)/*.c) \
+					$(wildcard $(SRC_DIR)/$(FT_PRINTF_DIR)/*.c) \
+					$(wildcard $(SRC_DIR)/$(GET_NEXT_LINE_DIR)/*.c)
+
+HEADERS			:=$(INCLUDE_DIR)/*.h
 
 # 	Objects
 OBJS 			:=$(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
