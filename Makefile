@@ -1,61 +1,50 @@
-MAIN = main.c
-VISUALS = dda.c init_mlx.c move_player.c turn_player.c \
-draw_line.c init_line.c generate_view.c utils.c init_info.c error_handling.c
-
-SRCS = $(MAIN)\
-$(VISUALS)
-
-OBJS = $(SRCS:%.c=$(OBJS_DIR)/%.o)
-NAME = cub3d
-VPATH = . src
-
-INCLUDE = -I./include -I./MLX42/include
-
-MLX42 =  -lglfw -lm build/libmlx42.a -Iinclude -L"/opt/homebrew/Cellar/glfw/3.3.9/lib/"
-MLX42_DIR = MLX42
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-CC = cc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
-OBJS_DIR = ./objs
-
-RM = rm -rf
+include makerc/definitions.mk
 
 all:	$(NAME)
+.PHONY: all
 
-$(NAME): $(MLX42) $(LIBFT) $(OBJS_DIR) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX42) $(LIBFT) -o $(NAME)
-	@echo "$(NAME) made!"
+$(NAME): $(MLX42) $(LIBFT) $(BUILD_DIR) $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(MLX42) $(LIBFT) -o $(NAME)
 
-$(OBJS_DIR):
-	@mkdir -p $(OBJS_DIR)
-	@echo "./objs made!"
+-include $(DEPENDS)
 
-$(OBJS_DIR)/%.o:	%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+$(BUILD_DIR):
+	@mkdir -p $(BUILD_DIR)
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
 $(MLX42):
-	@cmake $(MLX42_DIR) -B build
-	@cmake --build build
+	@cmake $(MLX42_DIR) -B $(MLX42_DIR)/build
+	@cmake --build $(MLX42_DIR)/build
 
 $(LIBFT):
-	@make -C $(LIBFT_DIR) all
+	@$(MAKE) -C $(LIBFT_DIR)
 
 clean:	
-	@$(RM) -r $(OBJS_DIR)
-	@make -C $(LIBFT_DIR) clean
-	@echo "$(NAME) objects removed!"
+	@$(RM) $(OBJS) $(DEPENDS)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+.PHONY: clean
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(NAME) removed!"
-	@$(RM) $(OBJS_DIR)
-	@echo "./objs removed!"
-	@make -C $(LIBFT_DIR) fclean
-	@$(RM) build
+	@$(RM) $(BUILD_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+.PHONY: fclean
 
 re: fclean all
+.PHONY: re
 
-.PHONY: all clean re clean fclear
+debug:
+	@$(MAKE) DEBUG=1
+.PHONY: debug
 
+fsan:
+	@$(MAKE) FSAN=1 DEBUG=1
+.PHONY: fsan
+
+resan: fclean fsan
+.PHONY: resan
+
+rebug: fclean debug
+.PHONY: rebug
