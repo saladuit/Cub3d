@@ -63,6 +63,6 @@ int ft_get_min(int *arr, int len);
 int *ft_swap_list(int *arr, int x, int y);
 int ft_ischar(char c);
 void ft_free_str(char **str);
-void ft_free_2d_array(void ***arr);
+void ft_free_str_table(char ***str_table);
 
 #endif
