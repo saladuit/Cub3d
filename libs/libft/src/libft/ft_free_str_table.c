@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_2d_array.c                                    :+:      :+:    :+:   */
+/*   ft_free_str_table.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bootjan <bootjan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:51:47 by bootjan           #+#    #+#             */
-/*   Updated: 2024/01/06 15:54:26 by bootjan          ###   ########.fr       */
+/*   Updated: 08/01/2024 04:12:59 PM bootjan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_2d_array(void ***arr)
+void ft_free_str_table(char ***str_table)
 {
-	int				i;
-	unsigned char	***ptr;
+	int i;
 
-	ptr = (unsigned char ***)arr;
-	if (!ptr || !*ptr)
-		return ;
+	if (!str_table || !*str_table)
+		return;
 	i = 0;
-	while ((*ptr)[i])
-		free((*ptr)[i++]);
-	free(*ptr);
-	*arr = NULL;
+	while ((*str_table)[i])
+		free((*str_table)[i++]);
+	free(*str_table);
+	*str_table = NULL;
 }
