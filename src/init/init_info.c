@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 15:50:21 by bootjan           #+#    #+#             */
-/*   Updated: 2024/01/06 16:59:31 by bootjan          ###   ########.fr       */
+/*   Updated: 2024/01/10 00:01:54 by bootjan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ t_info	*init_info(t_root *root)
 	info = ft_calloc(1, sizeof(t_info));
 	if (!info)
 		return (NULL);
-	info->pos_x = root->pos_x;
-	info->pos_y = root->pos_y;
+	info->pos_x = root->pos_x + 0.5;
+	info->pos_y = root->pos_y + 0.5;
 	set_direction(info, root->dir);
 	set_plane(info);
 	return (info);

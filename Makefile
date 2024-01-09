@@ -50,6 +50,10 @@ apple:
 	@$(MAKE) APPLE=1
 .PHONY: apple
 
+applebug:
+	@$(MAKE) APPLE=1 DEBUG=1
+.PHONY: applebug
+
 fsan:
 	@$(MAKE) FSAN=1 DEBUG=1
 .PHONY: fsan
@@ -62,3 +66,6 @@ rebug: fclean debug
 
 reapple: fclean apple
 .PHONY: reapple
+
+reapplebug: fclean applebug
+.PHONY: reapplebug
