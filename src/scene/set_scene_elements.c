@@ -7,7 +7,9 @@ static bool create_scene_element_attempt(char *string, t_scene *scene,
 {
 	char *line;
 
-	line = ft_substr(string, line_start, len - 1);
+	if (line_start != 0)
+		len--;
+	line = ft_substr(string, line_start, len);
 	if (!line)
 		system_error_and_exit("ft_substr in string_to_scene");
 	if (line_to_scene_element(scene, line) == false)
