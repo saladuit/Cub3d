@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_line.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bootjan <bootjan@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/06 16:31:52 by bootjan           #+#    #+#             */
-/*   Updated: 2024/01/06 16:56:25 by bootjan          ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init_line.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: bootjan <bootjan@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/06 16:31:52 by bootjan       #+#    #+#                 */
+/*   Updated: 2024/01/09 13:24:00 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ static void	set_tex_x(t_line *line, t_raycast *raycast)
 
 void	init_line(t_line *line, t_raycast *raycast, t_info *info, int x)
 {
-	line->line_height = (int)(WINDOW_HEIGHT / raycast->perp_wall_dist);
+	if (raycast->perp_wall_dist)
+		line->line_height = (int)(WINDOW_HEIGHT / raycast->perp_wall_dist);
+	else
+		line->line_height = WINDOW_HEIGHT - 1;
 	set_y01(line);
 	line->x = x;
 	set_wall_x(line, info, raycast);
