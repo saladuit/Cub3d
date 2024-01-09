@@ -21,6 +21,10 @@ ifdef	FSAN
 	CFLAGS		+=-fsanitize=address,undefined
 endif
 
+ifdef	APPLE
+	LDFLAGS		+=-L"/opt/homebrew/Cellar/glfw/3.3.9/lib"
+endif
+
 #	Directories
 SRC_DIR		 	:=src
 INCLUDE_DIR		:=include
