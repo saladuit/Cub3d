@@ -5,23 +5,11 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-static char	*ft_strdup_no_nl(const char *str)
-{
-	size_t	len;
-
-	len = ft_strlen(str);
-	if (len == 0)
-		return (ft_strdup(""));
-	if (str[len - 1] == '\n')
-		len--;
-	return (ft_substr(str, 0, len));
-}
-
 static void set_scene_path(char **path, char *value)
 {
 	if (*path)
 		free(*path);
-	*path = ft_strdup_no_nl(value);
+	*path = ft_strdup(value);
 	if (!*path)
 		system_error_and_exit("ft_strdup in set_scene_path");
 }

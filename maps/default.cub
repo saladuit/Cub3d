@@ -3,8 +3,8 @@ SO ./texture/kchrosci.png
 WE ./texture/bschaafs.png
 EA ./texture/safoh.png
 
-F 220,100,0
-C 225,30,0
+F 235,75,179
+C 73,239,245
 
         1111111111111111111111111
         1000000000110000000000001

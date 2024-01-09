@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                   .--.  _                  */
-/*  load_scene_from_file.c                          |o_o || |                 */
-/*                                                  |:_/ || |_ _   ___  __    */
-/*  By: safoh <safoh@student.codam.nl>             //   \ \ __| | | \ \/ /    */
-/*                                                (|     | )|_| |_| |>  <     */
-/*  Created: 08/01/2024 01:47:11 PM by safoh     /'\_   _/`\__|\__,_/_/\_\    */
-/*  Updated: 08/01/2024 07:03:05 PM by safoh     \___)=(___/                  */
+/*                                                        ::::::::            */
+/*   load_scene_from_file.c                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: afoh <safoh@student.codam.nl>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 0008/01/20 01:47:11 by y safoh       #+#    #+#                 */
+/*   Updated: 2024/01/09 13:10:33 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void string_to_scene(char *string, t_scene *scene)
 				continue;
 			}
 			if (string[i + 1] == ' ')
-				break;
-			if (string[len - 1] == '\n')
+				break ;
+			if (string[i] == '\n' && len != i)
 				len--;
 			line = ft_substr(string, line_start, len);
 			if (!line)
