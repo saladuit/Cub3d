@@ -39,6 +39,8 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 		user_error_and_exit("Not enough arguments");
+	if (!is_cub_file(argv[1]))
+		user_error_and_exit("Not a .cub file");
 	scene = load_scene_from_file(argv[1]);
 	print_scene(&scene); // INFO:
 	run_game(&scene);
