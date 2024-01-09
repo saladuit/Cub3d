@@ -36,7 +36,8 @@ SRCS			:=$(wildcard $(SRC_DIR)/*.c) \
 						$(wildcard $(SRC_DIR)/error/*.c) \
 						$(wildcard $(SRC_DIR)/parse/*.c) \
 						$(wildcard $(SRC_DIR)/rgb/*.c) \
-						$(wildcard $(SRC_DIR)/scene/*.c)
+						$(wildcard $(SRC_DIR)/scene/*.c) \
+						$(wildcard $(SRC_DIR)/utils/*.c)
 HEADERS			:=$(INCLUDE_DIR)/*.h \
 					$(LIBFT_DIR)/include/*.h \
 					$(MLX42_DIR)/include/*.h

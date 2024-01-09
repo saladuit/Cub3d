@@ -1,6 +1,6 @@
-#include "scene.h"
 #include "error.h"
 #include "libft.h"
+#include "scene.h"
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -22,7 +22,7 @@ static char **allocate_identifier_value_pair(char *line)
 bool line_to_scene_element(t_scene *scene, char *line)
 {
 	char **identifier_value;
-	bool element_found = false;
+	bool element_found = true;
 
 	identifier_value = allocate_identifier_value_pair(line);
 	if (ft_strncmp(identifier_value[0], "NO", 3) == 0)

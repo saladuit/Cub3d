@@ -31,7 +31,7 @@ size_t set_scene_elements(char *string, t_scene *scene)
 		{
 			if (len <= 1)
 				line_start++;
-			else if (string[i + 1] == ' ' ||
+			else if (string[line_start] == ' ' ||
 					 create_scene_element_attempt(string, scene, line_start,
 												  len) == false)
 				break;

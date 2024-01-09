@@ -32,5 +32,8 @@ size_t set_scene_elements(char *string, t_scene *scene);
 void set_default_scene(t_scene *scene);
 void set_scene_path(char **path, char *value);
 void print_scene(t_scene *scene);
+void set_scene_map(const char *string, t_scene *scene, size_t line_start);
+char **create_square_map(char **map);
+void check_valid_map(const char *string);
 
 #endif
