@@ -6,36 +6,15 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:00 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/08 18:03:11 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/09 11:48:47 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_root init_root(void)
+void run_game(t_scene *scene)
 {
-	t_root root;
-
-	root.map = NULL;
-	root.rgb_ceil[0] = 204;
-	root.rgb_ceil[1] = 153;
-	root.rgb_ceil[2] = 255;
-	root.rgb_floor[0] = 52;
-	root.rgb_floor[1] = 154;
-	root.rgb_floor[2] = 237;
-	root.no_path = PATH1;
-	root.ea_path = PATH2;
-	root.so_path = PATH3;
-	root.we_path = PATH4;
-	root.pos_x = 12;
-	root.pos_y = 12;
-	root.dir = 'E';
-	return (root);
-}
-
-void run_game(void)
-{
-	t_root root = init_root();
+	t_root root = init_root(scene);
 	init_mlx(&root);
 	t_info *info = init_info(&root);
 	if (!info)
@@ -60,7 +39,7 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 		user_error_and_exit("Not enough arguments");
 	scene = load_scene_from_file(argv[1]);
-	(void)scene;
-	// run_game();
+	run_game(&scene);
+	// free_scene(&scene);
 	return (EXIT_SUCCESS);
 }

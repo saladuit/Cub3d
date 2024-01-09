@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
-/*   Updated: 09/01/2024 03:38:05 PM bschaafs      ########   odam.nl         */
+/*   Updated: 09/01/2024 03:49:53 PM bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ typedef struct s_root
 	char *so_path;
 	char *we_path;
 
-	uint8_t rgb_ceil[3];
-	uint8_t rgb_floor[3];
-	int color_ceil;
-	int color_floor;
+	uint32_t rgb_ceil[3];
+	uint32_t rgb_floor[3];
+	uint32_t color_ceil;
+	uint32_t color_floor;
 
 	char **map;
-	u_int8_t pos_x;
-	u_int8_t pos_y;
+	int pos_x;
+	int pos_y;
 	char dir;
 
 	mlx_t *window;
@@ -120,13 +120,14 @@ t_scene load_scene_from_file(char *file_path);
 // ### INITIALIZE ##############################################################
 t_info *init_info(t_root *root);
 void init_mlx(t_root *root);
+t_root init_root(t_scene *scene);
 
 // ### UTILS ###################################################################
 bool valid_move(char **map, t_info *info, double y_plus, double x_plus);
 double ft_abs_double(double x);
 void free_root(t_root *root);
-int compute_color_rgb(uint8_t rgb[3]);
-int compute_color(int r, int g, int b, int a);
+unsigned int compute_color_rgb(uint32_t rgb[3]);
+unsigned int compute_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 
 // ### MOVE PLAYER #############################################################
 void move_player(void *arg);
