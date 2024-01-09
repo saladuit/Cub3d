@@ -1,7 +1,11 @@
 include makerc/definitions.mk
 
-all:	$(NAME)
+all: build_dir $(NAME)
 .PHONY: all
+
+build_dir:
+	$(shell mkdir -p $(dir $(OBJS)))
+.PHONY: build_dir
 
 $(NAME): $(MLX42) $(LIBFT) $(BUILD_DIR) $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(MLX42) $(LIBFT) -o $(NAME)
@@ -33,7 +37,7 @@ fclean: clean
 re: fclean all
 .PHONY: re
 
-clean_submodules:
+clean_submodules: clean
 	@$(RM) $(MLX42_DIR)/build
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 .PHONY: clean_submodules

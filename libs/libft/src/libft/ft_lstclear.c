@@ -1,8 +1,4 @@
 #include "list.h"
-<<<<<<< HEAD
-=======
-#include <stdlib.h>
->>>>>>> origin/parsing
 
 void ft_lstclear(t_list **lst, void (*del)(void *))
 {

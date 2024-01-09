@@ -32,7 +32,11 @@ LIBFT 			=$(LIBFT_DIR)/libft.a
 MLX42			=$(MLX42_DIR)/$(BUILD_DIR)/libmlx42.a
 
 #	Preprocessing files
-SRCS			:=$(wildcard $(SRC_DIR)/*.c)
+SRCS			:=$(wildcard $(SRC_DIR)/*.c) \
+						$(wildcard $(SRC_DIR)/error/*.c) \
+						$(wildcard $(SRC_DIR)/parse/*.c) \
+						$(wildcard $(SRC_DIR)/rgb/*.c) \
+						$(wildcard $(SRC_DIR)/scene/*.c)
 HEADERS			:=$(INCLUDE_DIR)/*.h \
 					$(LIBFT_DIR)/include/*.h \
 					$(MLX42_DIR)/include/*.h
