@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/09 11:50:38 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/09 12:13:15 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ typedef struct s_root
 	char *so_path;
 	char *we_path;
 
-	uint8_t rgb_ceil[3];
-	uint8_t rgb_floor[3];
-	int color_ceil;
-	int color_floor;
+	uint32_t rgb_ceil[3];
+	uint32_t rgb_floor[3];
+	uint32_t color_ceil;
+	uint32_t color_floor;
 
 	char **map;
 	int pos_x;
@@ -131,8 +131,8 @@ t_root init_root(t_scene *scene);
 bool valid_move(char **map, t_info *info, double y_plus, double x_plus);
 double ft_abs_double(double x);
 void free_root(t_root *root);
-int compute_color_rgb(uint8_t rgb[3]);
-int compute_color(int r, int g, int b, int a);
+unsigned int compute_color_rgb(uint32_t rgb[3]);
+unsigned int compute_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 
 // ### MOVE PLAYER #############################################################
 void move_player(void *arg);

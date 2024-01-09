@@ -6,7 +6,7 @@
 /*   By: bschaafs <bschaafs@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/09 11:48:48 by bschaafs      #+#    #+#                 */
-/*   Updated: 2024/01/09 11:50:21 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/09 12:56:45 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ static void	set_player(t_root *root, int x, int y)
 	root->dir = root->map[y][x];
 }
 
+static int	arr_len(char **arr)
+{
+	int	len;
+
+	len = 0;
+	while (arr[len])
+		len++;
+	return (len);
+}
+
 static void	find_player(t_root *root)
 {
 	int	x;
@@ -31,22 +41,22 @@ static void	find_player(t_root *root)
 	int	map_width;
 	int	map_height;
 
-	x = 0;
 	y = 0;
-	map_height = ft_strlen((char *)root->map);
+	map_height = arr_len(root->map);
 	map_width = ft_strlen(root->map[0]);
-	while (x < map_width)
+	while (y < map_height)
 	{
-		while (y < map_height)
+		x = 0;
+		while (x < map_width)
 		{
 			if (is_player(root->map[y][x]))
 			{
 				set_player(root, x, y);
 				return ;
 			}
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 
@@ -54,6 +64,7 @@ t_root init_root(t_scene *scene)
 {
 	t_root root;
 
+	ft_bzero(&root, sizeof(t_root));
 	root.map = scene->map;
 	root.rgb_ceil[0] = scene->ceil.r;
 	root.rgb_ceil[1] = scene->ceil.g;
