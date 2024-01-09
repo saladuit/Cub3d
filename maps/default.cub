@@ -1,7 +1,7 @@
-NO ./path_no
-SO ./path_so
-WE ./path_we
-EA ./path_ea
+NO ./texture/safoh.png
+SO ./texture/kchrosci.png
+WE ./texture/bschaafs.png
+EA ./texture/safoh.png
 
 F 220,100,0
 C 225,30,0

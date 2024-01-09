@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/08 17:32:45 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/09 11:50:38 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ typedef struct s_root
 	int color_floor;
 
 	char **map;
-	u_int8_t pos_x;
-	u_int8_t pos_y;
+	int pos_x;
+	int pos_y;
 	char dir;
 
 	mlx_t *window;
@@ -125,6 +125,7 @@ t_scene load_scene_from_file(char *file_path);
 // ### INITIALIZE ##############################################################
 t_info *init_info(t_root *root);
 void init_mlx(t_root *root);
+t_root init_root(t_scene *scene);
 
 // ### UTILS ###################################################################
 bool valid_move(char **map, t_info *info, double y_plus, double x_plus);
