@@ -25,7 +25,7 @@ typedef struct s_scene
 	char **map;
 } t_scene;
 
-void clear_scene(t_scene *scene);
+void scene_clear(t_scene *scene);
 bool line_to_scene_element(t_scene *scene, char *string);
 void string_to_scene(char *string, t_scene *scene);
 size_t set_scene_elements(char *string, t_scene *scene);
