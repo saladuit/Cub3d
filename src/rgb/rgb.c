@@ -2,6 +2,16 @@
 #include "error.h"
 #include "libft.h"
 
+uint32_t compute_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+uint32_t compute_color_rgb(uint32_t rgb[3])
+{
+	return (compute_color(rgb[0], rgb[1], rgb[2], 255));
+}
+
 static void values_to_rgb(int *values, t_rgb *rgb)
 {
 	if (values[0] < 0 || values[0] > 255 || values[1] < 0 || values[1] > 255 ||

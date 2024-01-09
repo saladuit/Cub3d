@@ -37,7 +37,11 @@ SRCS			:=$(wildcard $(SRC_DIR)/*.c) \
 						$(wildcard $(SRC_DIR)/parse/*.c) \
 						$(wildcard $(SRC_DIR)/rgb/*.c) \
 						$(wildcard $(SRC_DIR)/scene/*.c) \
-						$(wildcard $(SRC_DIR)/utils/*.c)
+						$(wildcard $(SRC_DIR)/init/*.c) \
+						$(wildcard $(SRC_DIR)/dda/*.c) \
+						$(wildcard $(SRC_DIR)/utils/*.c) \
+						$(wildcard $(SRC_DIR)/move_player/*.c)
+
 HEADERS			:=$(INCLUDE_DIR)/*.h \
 					$(LIBFT_DIR)/include/*.h \
 					$(MLX42_DIR)/include/*.h
