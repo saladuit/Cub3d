@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/08 17:32:45 by bschaafs      ########   odam.nl         */
+/*   Updated: 09/01/2024 03:38:05 PM bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@
 
 #define WINDOW_HEIGHT 960
 #define WINDOW_WIDTH 1280
-
-#define PATH1 "texture/kchrosci.png"
-#define PATH2 "texture/polish_flag.png"
-#define PATH3 "texture/playboy.png"
-#define PATH4 "texture/safoh.png"
 
 #define TEX_SIZE 512
 #define MOVE_SPEED 0.1

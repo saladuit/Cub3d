@@ -2,7 +2,17 @@
 #define SCENE_H
 
 #include "rgb.h"
+
 #include <stdbool.h>
+#include <stdlib.h>
+
+#define DEFAULT_PATH_NO "texture/kchrosci.png"
+#define DEFAULT_PATH_SO "texture/polish_flag.png"
+#define DEFAULT_PATH_WE "texture/playboy.png"
+#define DEFAULT_PATH_EA "texture/safoh.png"
+
+#define DEFAULT_FLOOR "255,0,0"
+#define DEFAULT_CEIL "0,255,0"
 
 typedef struct s_scene
 {
@@ -16,6 +26,11 @@ typedef struct s_scene
 } t_scene;
 
 void clear_scene(t_scene *scene);
-bool line_to_scene_value(t_scene *scene, char *string);
+bool line_to_scene_element(t_scene *scene, char *string);
+void string_to_scene(char *string, t_scene *scene);
+size_t set_scene_elements(char *string, t_scene *scene);
+void set_default_scene(t_scene *scene);
+void set_scene_path(char **path, char *value);
+void print_scene(t_scene *scene);
 
 #endif
