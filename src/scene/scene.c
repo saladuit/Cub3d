@@ -5,16 +5,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-static void set_scene_path(char **path, char *value)
-{
-	if (*path)
-		free(*path);
-	*path = ft_strdup(value);
-	if (!*path)
-		system_error_and_exit("ft_strdup in set_scene_path");
-}
-
-bool line_to_scene_value(t_scene *scene, char *line)
+static char **allocate_identifier_value_pair(char *line)
 {
 	char **identifier_value;
 
@@ -25,6 +16,15 @@ bool line_to_scene_value(t_scene *scene, char *line)
 		user_error_and_exit("Not enough values in one of the settings");
 	if (identifier_value[2])
 		user_error_and_exit("Too many values in one of the settings");
+	return (identifier_value);
+}
+
+bool line_to_scene_element(t_scene *scene, char *line)
+{
+	char **identifier_value;
+	bool element_found = false;
+
+	identifier_value = allocate_identifier_value_pair(line);
 	if (ft_strncmp(identifier_value[0], "NO", 3) == 0)
 		set_scene_path(&scene->no_path, identifier_value[1]);
 	else if (ft_strncmp(identifier_value[0], "EA", 3) == 0)
@@ -38,20 +38,7 @@ bool line_to_scene_value(t_scene *scene, char *line)
 	else if (ft_strncmp(identifier_value[0], "C", 2) == 0)
 		string_to_rgb(identifier_value[1], &scene->ceil);
 	else
-		return (false);
-	return (true);
-}
-
-void clear_scene(t_scene *scene)
-{
-	if (scene->no_path)
-		free(scene->no_path);
-	if (scene->ea_path)
-		free(scene->ea_path);
-	if (scene->so_path)
-		free(scene->so_path);
-	if (scene->we_path)
-		free(scene->we_path);
-	if (scene->map)
-		ft_free_str_table(&scene->map);
+		element_found = false;
+	ft_free_str_table(&identifier_value);
+	return (element_found);
 }
