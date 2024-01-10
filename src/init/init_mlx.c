@@ -6,29 +6,29 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/04 01:07:37 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/10 13:51:43 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/10 17:39:19 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void convert_pixels(uint8_t *pixels, int *new_pixels)
+void	convert_pixels(uint8_t *pixels, int *new_pixels)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < TEX_SIZE * TEX_SIZE)
 	{
-		new_pixels[i] = compute_color(pixels[4 * i], pixels[4 * i + 1],
-									  pixels[4 * i + 2], pixels[4 * i + 3]);
+		new_pixels[i] = compute_color(pixels[4 * i], pixels[4 * i + 1], \
+		pixels[4 * i + 2], pixels[4 * i + 3]);
 		i++;
 	}
 }
 
-static mlx_image_t *load_image(mlx_t *window, const char *path)
+static mlx_image_t	*load_image(mlx_t *window, const char *path)
 {
-	mlx_texture_t *texture;
-	mlx_image_t *image;
+	mlx_texture_t	*texture;
+	mlx_image_t		*image;
 
 	texture = mlx_load_png(path);
 	if (!texture)
@@ -42,17 +42,17 @@ static mlx_image_t *load_image(mlx_t *window, const char *path)
 	return (image);
 }
 
-void load_pixels(mlx_t *window, const char *path, int *texture)
+void	load_pixels(mlx_t *window, const char *path, int *texture)
 {
-	mlx_image_t *image;
+	mlx_image_t	*image;
 
 	image = load_image(window, path);
 	convert_pixels(image->pixels, texture);
 }
 
-int load_textures(t_root *root)
+int	load_textures(t_root *root)
 {
-	int error_flag;
+	int	error_flag;
 
 	error_flag = 0;
 	load_pixels(root->window, root->no_path, root->no_texture);
@@ -62,9 +62,9 @@ int load_textures(t_root *root)
 	return (error_flag);
 }
 
-void init_mlx(t_root *root)
+void	init_mlx(t_root *root)
 {
-	int image_index;
+	int	image_index;
 
 	root->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D...", true);
 	if (!root->window)
