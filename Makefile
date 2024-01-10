@@ -43,11 +43,11 @@ clean_submodules: clean
 .PHONY: clean_submodules
 
 debug:
-	@$(MAKE) DEBUG=1
+	@$(MAKE) DEBUG=1 LOG=1
 .PHONY: debug
 
 fsan:
-	@$(MAKE) FSAN=1 DEBUG=1
+	@$(MAKE) FSAN=1 DEBUG=1 LOG=1
 .PHONY: fsan
 
 resan: fclean fsan

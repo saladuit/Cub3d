@@ -21,6 +21,10 @@ ifdef	FSAN
 	CFLAGS		+=-fsanitize=address,undefined
 endif
 
+ifdef LOG
+	CFLAGS		+=-DLOG=1
+endif
+
 #	Directories
 SRC_DIR		 	:=src
 INCLUDE_DIR		:=include

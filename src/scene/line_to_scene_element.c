@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   line_to_scene_element.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/10 16:25:12 by safoh             #+#    #+#             */
+/*   Updated: 2024/01/10 16:25:13 by safoh            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "error.h"
 #include "libft.h"
 #include "scene.h"
-
 #include <stdbool.h>
 #include <stdio.h>
 
-static char **allocate_identifier_value_pair(char *line)
+static char	**allocate_identifier_value_pair(char *line)
 {
-	char **identifier_value;
+	char	**identifier_value;
 
 	identifier_value = ft_split(line, " ");
 	if (!identifier_value)
@@ -19,11 +30,12 @@ static char **allocate_identifier_value_pair(char *line)
 	return (identifier_value);
 }
 
-bool line_to_scene_element(t_scene *scene, char *line)
+bool	line_to_scene_element(t_scene *scene, char *line)
 {
-	char **identifier_value;
-	bool element_found = true;
+	char	**identifier_value;
+	bool	element_found;
 
+	element_found = true;
 	identifier_value = allocate_identifier_value_pair(line);
 	if (ft_strncmp(identifier_value[0], "NO", 3) == 0)
 		set_scene_path(&scene->no_path, identifier_value[1]);

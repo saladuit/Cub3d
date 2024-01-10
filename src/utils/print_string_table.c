@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_string_table.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/10 16:20:34 by safoh             #+#    #+#             */
+/*   Updated: 2024/01/10 16:20:35 by safoh            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 
-void print_str_table(char **table)
+void	print_str_table(char **table)
 {
-	size_t i = 0;
+	size_t	i;
+
+	i = 0;
 	while (table[i])
 	{
 		printf("%s\n", table[i]);

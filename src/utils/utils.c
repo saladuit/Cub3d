@@ -13,7 +13,7 @@
 #include "cub3d.h"
 #include "libft.h"
 
-void free_root(t_root *root)
+void	free_root(t_root *root)
 {
 	if (root->info)
 		free(root->info);
@@ -23,23 +23,23 @@ void free_root(t_root *root)
 	root->raycast = NULL;
 }
 
-double ft_abs_double(double x)
+double	ft_abs_double(double x)
 {
 	if (x < 0)
 		return (-x);
 	return (x);
 }
 
-bool valid_move(char **map, t_info *info, double y_plus, double x_plus)
+bool	valid_move(char **map, t_info *info, double y_plus, double x_plus)
 {
-	return (map[(int)(info->pos_y + y_plus)][(int)(info->pos_x + x_plus)] !=
-			'1');
+	return (map[(int)(info->pos_y + y_plus)][(int)(info->pos_x
+			+ x_plus)] != '1');
 }
 
-static const char *after_dir(const char *argv)
+static const char	*after_dir(const char *argv)
 {
-	int name_len;
-	int i;
+	int	name_len;
+	int	i;
 
 	name_len = ft_strlen(argv);
 	i = name_len - 1;
@@ -52,10 +52,10 @@ static const char *after_dir(const char *argv)
 	return (argv);
 }
 
-bool is_cub_file(const char *filename)
+bool	is_cub_file(const char *filename)
 {
-	int name_len;
-	const char *clean_filename;
+	int			name_len;
+	const char	*clean_filename;
 
 	clean_filename = after_dir(filename);
 	name_len = ft_strlen(clean_filename);

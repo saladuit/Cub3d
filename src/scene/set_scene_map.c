@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_scene_map.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/10 16:27:10 by safoh             #+#    #+#             */
+/*   Updated: 2024/01/10 16:27:11 by safoh            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "error.h"
 #include "libft.h"
 #include "scene.h"
 
-bool check_adjecent_tiles(char **map, size_t row, size_t col)
+bool	check_adjecent_tiles(char **map, size_t row, size_t col)
 {
-	size_t xd[4] = {1, 0, -1, 0};
-	size_t yd[4] = {0, 1, 0, -1};
+	size_t	xd[4] = {1, 0, -1, 0};
+	size_t	yd[4] = {0, 1, 0, -1};
+
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (map[row + yd[i]][col + xd[i]] == ' ')
@@ -15,19 +27,21 @@ bool check_adjecent_tiles(char **map, size_t row, size_t col)
 	return (true);
 }
 
-bool is_map_closed(char **map, t_rectangle_dimension dim)
+bool	is_map_closed(char **map, t_rectangle_dimension dim)
 {
-	size_t row = 0;
-	size_t col = 0;
+	size_t	row;
+	size_t	col;
 
+	row = 0;
+	col = 0;
 	while (map[row])
 	{
 		while (map[row][col])
 		{
 			if (map[row][col] == '0')
 			{
-				if (col == 0 || row == 0 || row == dim.height - 1 ||
-					col == dim.width - 1)
+				if (col == 0 || row == 0 || row == dim.height - 1
+					|| col == dim.width - 1)
 					return (false);
 				else if (check_adjecent_tiles(map, row, col) == false)
 					return (false);
@@ -39,9 +53,9 @@ bool is_map_closed(char **map, t_rectangle_dimension dim)
 	return (true);
 }
 
-void set_scene_map(const char *string, t_scene *scene, size_t line_start)
+void	set_scene_map(const char *string, t_scene *scene, size_t line_start)
 {
-	t_rectangle_dimension dim;
+	t_rectangle_dimension	dim;
 
 	check_valid_map(string + line_start);
 	scene->map = ft_split(string + line_start, "\n");

@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:00 by bootjan       #+#    #+#                 */
-/*   Updated: 09/01/2024 05:31:42 PM bschaafs      ########   odam.nl         */
+/*   Updated: 10/01/2024 16:46:02 PM bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int main(int argc, char *argv[])
 	if (!is_cub_file(argv[1]))
 		user_error_and_exit("Not a .cub file");
 	scene = load_scene_from_file(argv[1]);
-	print_scene(&scene); // INFO:
+	if (LOG)
+		print_scene(&scene);
 	run_game(&scene);
 	scene_clear(&scene);
 	return (EXIT_SUCCESS);

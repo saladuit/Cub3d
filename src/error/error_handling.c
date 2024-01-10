@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-t_root *error_mlx(t_root *root)
+t_root	*error_mlx(t_root *root)
 {
 	mlx_terminate(root->window);
 	free_root(root);

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_default_scene.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: safoh <safoh@student.codam.nl>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/10 16:25:48 by safoh             #+#    #+#             */
+/*   Updated: 2024/01/10 16:25:50 by safoh            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "error.h"
 #include "libft.h"
 #include "scene.h"
 
-void set_default_scene(t_scene *scene)
+void	set_default_scene(t_scene *scene)
 {
 	set_scene_path(&scene->no_path, DEFAULT_PATH_NO);
 	set_scene_path(&scene->so_path, DEFAULT_PATH_SO);
