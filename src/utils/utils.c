@@ -6,24 +6,14 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/06 15:57:25 by bootjan       #+#    #+#                 */
-/*   Updated: 10/01/2024 02:02:08 PM bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/10 16:07:23 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
 
-void	free_root(t_root *root)
-{
-	if (root->info)
-		free(root->info);
-	root->info = NULL;
-	if (root->raycast)
-		free(root->raycast);
-	root->raycast = NULL;
-}
-
-double	ft_abs_double(double x)
+double ft_abs_double(double x)
 {
 	if (x < 0)
 		return (-x);

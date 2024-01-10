@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
-/*   Updated: 10/01/2024 02:01:54 PM bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/10 16:04:08 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-#ifndef LOG
-#define LOG 0
-#endif
+# ifndef LOG
+#  define LOG 0
+# endif
 
 # define BUFFER_SIZE 32
 
@@ -144,6 +144,7 @@ void			draw_line(t_root *root, t_line *line, uint8_t side);
 
 // ### ERROR HANDLING ##########################################################
 t_root			*error_mlx(t_root *root);
+void			game_error_and_exit(t_root *root, const char *err_msg);
 
 unsigned int	compute_color_rgb(uint32_t rgb[3]);
 unsigned int	compute_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
