@@ -6,7 +6,7 @@
 /*   By: bschaafs <bschaafs@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/09 11:48:48 by bschaafs      #+#    #+#                 */
-/*   Updated: 2024/01/09 12:56:45 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/10 17:38:38 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static void	find_player(t_root *root)
 	}
 }
 
-t_root init_root(t_scene *scene)
+t_root	init_root(t_scene *scene)
 {
-	t_root root;
+	t_root	root;
 
 	ft_bzero(&root, sizeof(t_root));
 	root.map = scene->map;

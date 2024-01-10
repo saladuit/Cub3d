@@ -6,14 +6,14 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/06 15:57:25 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/10 16:07:23 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/10 17:35:18 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
 
-double ft_abs_double(double x)
+double	ft_abs_double(double x)
 {
 	if (x < 0)
 		return (-x);

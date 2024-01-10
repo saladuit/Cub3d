@@ -3,28 +3,31 @@
 /*                                                        ::::::::            */
 /*   main.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: bootjan <bootjan@student.42.fr>              +#+                     */
+/*   By: bschaafs <bschaafs@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/01/01 22:10:00 by bootjan       #+#    #+#                 */
-/*   Updated: 10/01/2024 16:46:02 PM bschaafs      ########   odam.nl         */
+/*   Created: 2024/01/10 17:36:09 by bschaafs      #+#    #+#                 */
+/*   Updated: 2024/01/10 17:37:09 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "scene.h"
 
-void run_game(t_scene *scene)
+void	run_game(t_scene *scene)
 {
-	t_root root = init_root(scene);
+	t_root	root;
+	t_info	*info;
+	t_line	line;
+
+	root = init_root(scene);
 	init_mlx(&root);
-	t_info *info = init_info(&root);
+	info = init_info(&root);
 	if (!info)
 		game_error_and_exit(&root, "Root initialization");
 	root.info = info;
 	root.raycast = ft_calloc(1, sizeof(t_raycast));
 	if (!root.raycast)
 		game_error_and_exit(&root, "Root initialization");
-	t_line line;
 	ft_bzero(&line, sizeof(t_line));
 	mlx_loop_hook(root.window, generate_view, (void *)&root);
 	mlx_loop_hook(root.window, move_player, (void *)&root);
@@ -34,9 +37,9 @@ void run_game(t_scene *scene)
 	free_root(&root);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_scene scene;
+	t_scene	scene;
 
 	if (argc != 2)
 		user_error_and_exit("Not enough arguments");
