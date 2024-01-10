@@ -6,12 +6,22 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/06 15:57:25 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/10 13:46:52 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/10 16:04:27 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
+
+void free_root(t_root *root)
+{
+	if (root->info)
+		free(root->info);
+	root->info = NULL;
+	if (root->raycast)
+		free(root->raycast);
+	root->raycast = NULL;
+}
 
 double ft_abs_double(double x)
 {
@@ -26,10 +36,10 @@ bool valid_move(char **map, t_info *info, double y_plus, double x_plus)
 			'1');
 }
 
-static const char	*after_dir(const char *argv)
+static const char *after_dir(const char *argv)
 {
-	int	name_len;
-	int	i;
+	int name_len;
+	int i;
 
 	name_len = ft_strlen(argv);
 	i = name_len - 1;
@@ -42,10 +52,10 @@ static const char	*after_dir(const char *argv)
 	return (argv);
 }
 
-bool	is_cub_file(const char *filename)
+bool is_cub_file(const char *filename)
 {
-	int			name_len;
-	const char	*clean_filename;
+	int name_len;
+	const char *clean_filename;
 
 	clean_filename = after_dir(filename);
 	name_len = ft_strlen(clean_filename);
