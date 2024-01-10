@@ -31,8 +31,8 @@ static bool	is_setting(const char *str)
 	return (false);
 }
 
-static bool create_scene_element_attempt(char *string, t_scene *scene,
-										 size_t line_start, size_t len)
+static bool	create_scene_element_attempt(char *string, t_scene *scene,
+		size_t line_start, size_t len)
 {
 	char	*line;
 
@@ -42,7 +42,7 @@ static bool create_scene_element_attempt(char *string, t_scene *scene,
 	if (!line)
 		system_error_and_exit("ft_substr in string_to_scene");
 	if (line[0] == ' ' || line[0] == '1' || is_setting(line) == false)
-		return false;
+		return (false);
 	if (line_to_scene_element(scene, line) == false)
 	{
 		free(line);

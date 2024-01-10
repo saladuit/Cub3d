@@ -67,8 +67,8 @@ static void	free_array(char **out, int total_words)
 		free(out);
 }
 
-static char	**compute_array(char **out, const char *str, \
-char *set, int *error_flag)
+static char	**compute_array(char **out, const char *str, char *set,
+		int *error_flag)
 {
 	int	start;
 	int	i;

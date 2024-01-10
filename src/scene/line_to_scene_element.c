@@ -20,8 +20,6 @@ static char	**allocate_identifier_value_pair(char *line)
 {
 	char	**identifier_value;
 
-
-
 	identifier_value = ft_split(line, " ");
 	if (!identifier_value)
 		system_error_and_exit("ft_split in string_to_scene");

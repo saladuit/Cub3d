@@ -17,21 +17,24 @@
 
 bool	check_adjecent_tiles(char **map, size_t row, size_t col)
 {
-	size_t	xd[4] = {1, 0, -1, 0};
-	size_t	yd[4] = {0, 1, 0, -1};
+	const size_t	xd[4] = {1, 0, -1, 0};
+	const size_t	yd[4] = {0, 1, 0, -1};
+	size_t			i;
 
-	for (size_t i = 0; i < 4; i++)
+	i = 0;
+	while (i < 4)
 	{
 		if (map[row + yd[i]][col + xd[i]] == ' ')
 			return (false);
+		i++;
 	}
 	return (true);
 }
 
 bool	is_map_closed(char **map, t_rectangle_dimension dim)
 {
-	size_t row;
-	size_t col;
+	size_t	row;
+	size_t	col;
 
 	row = 0;
 	while (map[row])

@@ -19,8 +19,8 @@
 
 # define SIZE_OF_CHAR 1
 
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 size_t	ft_strlen(const char *s);
 int		ft_index_n(const char *str, char c);
