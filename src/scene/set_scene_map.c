@@ -2,6 +2,7 @@
 #include "error.h"
 #include "libft.h"
 #include "scene.h"
+#include "utils.h"
 
 bool check_adjecent_tiles(char **map, size_t row, size_t col)
 {
@@ -17,14 +18,16 @@ bool check_adjecent_tiles(char **map, size_t row, size_t col)
 
 bool is_map_closed(char **map, t_rectangle_dimension dim)
 {
-	size_t row = 0;
-	size_t col = 0;
+	size_t row;
+	size_t col;
 
+	row = 0;
 	while (map[row])
 	{
+		col = 0;
 		while (map[row][col])
 		{
-			if (map[row][col] == '0')
+			if (map[row][col] == '0' || is_player(map[row][col]))
 			{
 				if (col == 0 || row == 0 || row == dim.height - 1 ||
 					col == dim.width - 1)

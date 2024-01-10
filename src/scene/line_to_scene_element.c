@@ -9,6 +9,8 @@ static char **allocate_identifier_value_pair(char *line)
 {
 	char **identifier_value;
 
+
+
 	identifier_value = ft_split(line, " ");
 	if (!identifier_value)
 		system_error_and_exit("ft_split in string_to_scene");
@@ -23,7 +25,6 @@ bool line_to_scene_element(t_scene *scene, char *line)
 {
 	char **identifier_value;
 	bool element_found = true;
-
 	identifier_value = allocate_identifier_value_pair(line);
 	if (ft_strncmp(identifier_value[0], "NO", 3) == 0)
 		set_scene_path(&scene->no_path, identifier_value[1]);
