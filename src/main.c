@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:00 by bootjan       #+#    #+#                 */
-/*   Updated: 09/01/2024 05:31:42 PM bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/10 13:53:26 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ void run_game(t_scene *scene)
 	init_mlx(&root);
 	t_info *info = init_info(&root);
 	if (!info)
-		system_error_and_exit("Root initialization");
+		game_error_and_exit(&root, "Root initialization");
 	root.info = info;
 	root.raycast = ft_calloc(1, sizeof(t_raycast));
 	if (!root.raycast)
-		system_error_and_exit("Root initialization");
+		game_error_and_exit(&root, "Root initialization");
 	t_line line;
 	ft_bzero(&line, sizeof(t_line));
 	mlx_loop_hook(root.window, generate_view, (void *)&root);
 	mlx_loop_hook(root.window, move_player, (void *)&root);
 	mlx_loop(root.window);
 	mlx_terminate(root.window);
+	root.window = NULL;
 	free_root(&root);
 }
 

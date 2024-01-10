@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/04 01:07:37 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/08 11:23:02 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/10 13:51:43 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,15 @@ void init_mlx(t_root *root)
 
 	root->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D...", true);
 	if (!root->window)
-		system_error_and_exit("mlx_init in init_mlx");
+		game_error_and_exit(root, "mlx_init in init_mlx");
 	if (load_textures(root) != 0)
-		system_error_and_exit("load_textures in init_mlx");
+		game_error_and_exit(root, "load_textures in init_mlx");
 	root->image = mlx_new_image(root->window, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!root->image)
-		system_error_and_exit("mlx_new_image in init_mlx");
+		game_error_and_exit(root, "mlx_new_image in init_mlx");
 	image_index = mlx_image_to_window(root->window, root->image, 0, 0);
 	if (image_index == -1)
-		system_error_and_exit("mlx_image_to_window in init_mlx");
+		game_error_and_exit(root, "mlx_image_to_window in init_mlx");
 	root->color_ceil = compute_color_rgb(root->rgb_ceil);
 	root->color_floor = compute_color_rgb(root->rgb_floor);
 }

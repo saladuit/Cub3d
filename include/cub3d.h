@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/09 17:36:05 by bschaafs      ########   odam.nl         */
+/*   Updated: 2024/01/10 13:52:38 by bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ t_root init_root(t_scene *scene);
 // ### UTILS ###################################################################
 bool valid_move(char **map, t_info *info, double y_plus, double x_plus);
 double ft_abs_double(double x);
-void free_root(t_root *root);
 bool	is_cub_file(const char *filename);
+void free_root(t_root *root);
 
 // ### MOVE PLAYER #############################################################
 void move_player(void *arg);
@@ -139,6 +139,7 @@ void draw_line(t_root *root, t_line *line, uint8_t side);
 
 // ### ERROR HANDLING ##########################################################
 t_root *error_mlx(t_root *root);
+void	game_error_and_exit(t_root *root, const char *err_msg);
 
 unsigned int compute_color_rgb(uint32_t rgb[3]);
 unsigned int compute_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
