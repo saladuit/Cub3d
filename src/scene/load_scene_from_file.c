@@ -25,5 +25,6 @@ t_scene load_scene_from_file(char *file_path)
 	ft_bzero(&scene, sizeof(t_scene));
 	set_default_scene(&scene);
 	string_to_scene(string, &scene);
+	free(string);
 	return (scene);
 }

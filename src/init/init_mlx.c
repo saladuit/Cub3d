@@ -12,55 +12,42 @@
 
 #include "cub3d.h"
 
-static int *convert_pixels(uint8_t *pixels)
+void convert_pixels(uint8_t *pixels, int *new_pixels)
 {
 	int i;
-	int *new_pixels;
 
 	i = 0;
-	new_pixels = ft_calloc(TEX_SIZE * TEX_SIZE, sizeof(int));
-	if (!new_pixels)
-		return (NULL);
 	while (i < TEX_SIZE * TEX_SIZE)
 	{
 		new_pixels[i] = compute_color(pixels[4 * i], pixels[4 * i + 1],
 									  pixels[4 * i + 2], pixels[4 * i + 3]);
 		i++;
 	}
-	return (new_pixels);
 }
 
-static mlx_image_t *load_image(mlx_t *window, const char *path, int *error_flag)
+static mlx_image_t *load_image(mlx_t *window, const char *path)
 {
 	mlx_texture_t *texture;
 	mlx_image_t *image;
 
 	texture = mlx_load_png(path);
 	if (!texture)
-		return (*error_flag = 1, NULL);
+		user_error_and_exit("mlx_load_png failed in load_image");
 	image = mlx_texture_to_image(window, texture);
 	mlx_delete_texture(texture);
 	if (!image)
-		return (*error_flag = 1, NULL);
+		user_error_and_exit("mlx_load_png failed in load_image");
 	if (!mlx_resize_image(image, TEX_SIZE, TEX_SIZE))
-		return (*error_flag = 1, NULL);
+		user_error_and_exit("mlx_load_png failed in load_image");
 	return (image);
 }
 
-int *load_pixels(mlx_t *window, const char *path, int *error_flag)
+void load_pixels(mlx_t *window, const char *path, int *texture)
 {
-	int *pixels;
 	mlx_image_t *image;
 
-	if (*error_flag != 0)
-		return (NULL);
-	image = load_image(window, path, error_flag);
-	if (!image)
-		return (NULL);
-	pixels = convert_pixels(image->pixels);
-	if (!pixels)
-		return (*error_flag = 1, NULL);
-	return (pixels);
+	image = load_image(window, path);
+	convert_pixels(image->pixels, texture);
 }
 
 int load_textures(t_root *root)
@@ -68,13 +55,11 @@ int load_textures(t_root *root)
 	int error_flag;
 
 	error_flag = 0;
-	root->no_texture = load_pixels(root->window, root->no_path, &error_flag);
-	root->so_texture = load_pixels(root->window, root->so_path, &error_flag);
-	root->ea_texture = load_pixels(root->window, root->ea_path, &error_flag);
-	root->we_texture = load_pixels(root->window, root->we_path, &error_flag);
-	if (error_flag != 0)
-		return (-1);
-	return (0);
+	load_pixels(root->window, root->no_path, root->no_texture);
+	load_pixels(root->window, root->so_path, root->so_texture);
+	load_pixels(root->window, root->ea_path, root->ea_texture);
+	load_pixels(root->window, root->we_path, root->we_texture);
+	return (error_flag);
 }
 
 void init_mlx(t_root *root)

@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/01 22:10:19 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/09 17:36:05 by bschaafs      ########   odam.nl         */
+/*   Updated: 10/01/2024 02:01:54 PM bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 #define WINDOW_HEIGHT 960
 #define WINDOW_WIDTH 1280
 
-#define TEX_SIZE 512
+#define TEX_SIZE 64
 #define MOVE_SPEED 0.1
 #define ROT_SPEED 0.06
 
@@ -81,10 +81,10 @@ typedef struct s_line
 
 typedef struct s_root
 {
-	int *no_texture;
-	int *ea_texture;
-	int *so_texture;
-	int *we_texture;
+	int no_texture[TEX_SIZE * TEX_SIZE];
+	int ea_texture[TEX_SIZE * TEX_SIZE];
+	int so_texture[TEX_SIZE * TEX_SIZE];
+	int we_texture[TEX_SIZE * TEX_SIZE];
 	char *no_path;
 	char *ea_path;
 	char *so_path;
@@ -126,7 +126,7 @@ t_root init_root(t_scene *scene);
 bool valid_move(char **map, t_info *info, double y_plus, double x_plus);
 double ft_abs_double(double x);
 void free_root(t_root *root);
-bool	is_cub_file(const char *filename);
+bool is_cub_file(const char *filename);
 
 // ### MOVE PLAYER #############################################################
 void move_player(void *arg);

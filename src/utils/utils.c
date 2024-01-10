@@ -6,7 +6,7 @@
 /*   By: bootjan <bootjan@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/06 15:57:25 by bootjan       #+#    #+#                 */
-/*   Updated: 2024/01/09 17:35:22 by bschaafs      ########   odam.nl         */
+/*   Updated: 10/01/2024 02:02:08 PM bschaafs      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void free_root(t_root *root)
 	if (root->raycast)
 		free(root->raycast);
 	root->raycast = NULL;
-	ft_free_str_table(&root->map);
 }
 
 double ft_abs_double(double x)
@@ -37,10 +36,10 @@ bool valid_move(char **map, t_info *info, double y_plus, double x_plus)
 			'1');
 }
 
-static const char	*after_dir(const char *argv)
+static const char *after_dir(const char *argv)
 {
-	int	name_len;
-	int	i;
+	int name_len;
+	int i;
 
 	name_len = ft_strlen(argv);
 	i = name_len - 1;
@@ -53,10 +52,10 @@ static const char	*after_dir(const char *argv)
 	return (argv);
 }
 
-bool	is_cub_file(const char *filename)
+bool is_cub_file(const char *filename)
 {
-	int			name_len;
-	const char	*clean_filename;
+	int name_len;
+	const char *clean_filename;
 
 	clean_filename = after_dir(filename);
 	name_len = ft_strlen(clean_filename);
